@@ -1,4 +1,5 @@
-node{
+pipeline{
+	agent any
 
    def tomcatWeb = 'C:\\opt\\apache-tomcat-8.5.64\\webapps'
    def tomcatBin = 'C:\\opt\\apache-tomcat-8.5.64\\bin'
