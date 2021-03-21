@@ -1,23 +1,32 @@
 pipeline {
- agent any
- def mvnHome = tool 'MAVEN_HOME'
-	stages
-	{
-	stage('checkout SCM')
-	{
-	 steps{
-	 
-		checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/siteshbade/webAppExample.git']]])
-	      }
-	}
-	stage('Building application')
-	{
-	 steps{
-			bat "${mvnHome} -Dmaven.test.failure.ignore.clean.package"
-			
-			
-		 }
-	
-	}
-	}
+    agent any
+
+    stages {
+        stage ('Compile Stage') {
+
+            steps {
+                withMaven(maven : 'MAVEN_HOME') {
+                    bat 'mvn clean compile'
+                }
+            }
+        }
+
+        stage ('Testing Stage') {
+
+            steps {
+                withMaven(maven : 'MAVEN_HOME') {
+                    bat 'mvn test'
+                }
+            }
+        }
+
+
+        stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'MAVEN_HOME') {
+                    bat 'mvn deploy'
+                }
+            }
+        }
+    }
 }
