@@ -5,14 +5,14 @@ pipeline {
 	{
 	stage('checkout SCM')
 	{
-	 step{
+	 steps{
 	 
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/siteshbade/webAppExample.git']]])
 	      }
 	}
 	stage('Building application')
 	{
-	 step{
+	 steps{
 			bat "${mvnHome} -Dmaven.test.failure.ignore.clean.package"
 			
 			
