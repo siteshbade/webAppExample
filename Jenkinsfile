@@ -1,13 +1,12 @@
-pipeline{
-	agent any
-	tool{
+node{
+	
 
    def tomcatWeb = 'C:\\opt\\apache-tomcat-8.5.64\\webapps'
    def tomcatBin = 'C:\\opt\\apache-tomcat-8.5.64\\bin'
    def tomcatStatus = ''
-   }
    
-   stages{
+   
+   
    
    stage('SCM Checkout'){
      git 'https://github.com/siteshbade/webAppExample.git'
@@ -37,5 +36,5 @@ pipeline{
          bat "${tomcatBin}\\startup.bat"
          sleep(time:100,unit:"SECONDS")
    }
-   }
+   
 }
