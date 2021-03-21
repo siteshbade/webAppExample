@@ -28,7 +28,7 @@ pipeline {
         stage ('Deployment Stage') {
             steps {
                 
-                    bat 'mvn deploy'
+                    deploy adapters: [tomcat8(credentialsId: 'Tomcate', path: '', url: 'http://localhost:8082/')], contextPath: 'webAppExample', war: '**/*.war'
                 }
             }
         }
