@@ -14,7 +14,7 @@ node{
    stage('Compile-Package-create-war-file'){
       // Get maven home path
       def mvnHome =  tool name: 'MAVEN_HOME', type: 'maven'   
-      bat "${mvnHome}/bin/mvn package"
+      bat "${mvnHome}/bin/mvn package sonar:sonar"
       }
    stage ('Stop Tomcat Server') {
                bat ''' @ECHO OFF
