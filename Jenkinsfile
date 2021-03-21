@@ -28,7 +28,7 @@ pipeline {
         stage ('Deployment Stage') {
             steps {
                 
-                    deploy adapters: [tomcat8(credentialsId: 'Tomcate', path: '', url: 'http://localhost:8082/')], contextPath: 'webAppExample', war: '**/*.war'
+                    deploy adapters: [tomcat8(credentialsId: 'Tomcate', path: '', url: 'http://localhost:8082/')], contextPath: 'sample-java-app', war: '**/*.war'
                 }
             }
         }
